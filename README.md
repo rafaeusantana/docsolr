@@ -40,13 +40,13 @@ rails -s
 Você poderá acessar o site em http://localhost:3000.
 
 
-* **Configurações do Solr**
+**Configurações do Solr**
 
 Os arquivos armazenados no diretório files_solr deste repositório devem
 ser colocados na pasta base do solr (no ubuntu /usr/share/solr).
 
 
-* **Indexação de conteúdo**
+**Indexação de conteúdo**
 
 Para indexar o CSV com o conteúdo dos DOCs, basta utilizar a api do Solr:
 
