@@ -34,7 +34,7 @@ Depois de rodar o seguinte código na linha de comando:
 
 ```
 cd (diretório da aplicação)
-rails -s
+rails s
 ```
 
 Você poderá acessar o site em http://localhost:3000.
