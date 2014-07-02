@@ -8,14 +8,15 @@ Para deixar esta aplicação funcionando, siga os seguintes passos:
 Para o desenvolvimento desta aplicação foram utilizadas as seguintes versões de software:
 
 Versão do Ruby: 2.1.2
+
 Versão do Rails: 4.1.2
 
 
 * Configuração
 
-- Crie um diretório com todo o conteúdo deste repositório.
+Crie um diretório com todo o conteúdo deste repositório.
 
-- Rode o seguinte código na linha de comando:
+Rode o seguinte código na linha de comando:
 
 cd (diretório da aplicação)
 bundle install
@@ -47,9 +48,11 @@ Para indexar o CSV com o conteúdo dos DOCs, basta utilizar a api do Solr:
 
 http://localhost:8080/solr/docsolr/update/csv?stream.file=/home/rafa/Downloads/saidas/saida001.csv&commit=true&header=true&fieldnames=id,data,retranca,tipo_conteudo,secretaria,orgao,texto&stream.contentType=text/csv;charset=utf-8
 
-- Se o arquivo não possui o nome dos campos, então header=false.
-- id e não ID (isso ajudou na integração com a biblioteca Blacklight).
-- Pelos meus testes iniciais, consegui indexar um arquivo de dezenas de mb desta forma, então é
+Se o arquivo não possui o nome dos campos, então header=false.
+
+id e não ID (isso ajudou na integração com a biblioteca Blacklight).
+
+Pelos meus testes iniciais, consegui indexar um arquivo de dezenas de mb desta forma, então é
 recomendável criar vários arquivos de no máximo algumas dezenas de mb e indexá-los através da api do solr.
 
 
