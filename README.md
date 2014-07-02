@@ -1,6 +1,6 @@
-+README
+README
 
-+======
+======
 
 Para deixar esta aplicação funcionando, siga os seguintes passos:
 
