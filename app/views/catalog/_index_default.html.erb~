@@ -1,0 +1,9 @@
+<%# default partial to display solr document fields in catalog index view -%>
+<dl class="document-metadata dl-horizontal dl-invert">
+
+	    <dt class="blacklight-assunto">Assunto:</dt>
+	    <dd class="blacklight-assunto"><%= link_to_document document, :label=>(render_index_field_value document, :field => 'secretaria')+' - '+(render_index_field_value document, :field => 'orgao')+' - '+(render_index_field_value document, :field => 'tipo_conteudo') %></dd>
+
+	    <dt class="blacklight-texto">Texto:</dt>
+	    <dd class="blacklight-texto"><%= render_index_field_value document, :field => 'texto' %></dd>
+</dl>

@@ -1,0 +1,19 @@
+<%# default partial to display solr document fields in catalog show view -%>
+<dl class="dl-horizontal  dl-invert">
+
+	    <dt class="blacklight-secretaria">Secretaria:</dt>
+	    <dd class="blacklight-secretaria"><%= (render_document_show_field_value document, :field => 'secretaria') %></dd>
+
+	    <dt class="blacklight-secretaria">Secretaria:</dt>
+	    <dd class="blacklight-secretaria"><%= (render_document_show_field_value document, :field => 'secretaria') %></dd>
+
+	    <dt class="blacklight-orgao">Orgão:</dt>
+	    <dd class="blacklight-orgao"><%= (render_document_show_field_value document, :field => 'orgao') %></dd>
+
+	    <dt class="blacklight-tipo_conteudo">Tipo de Conteúdo:</dt>
+	    <dd class="blacklight-tipo_conteudo"><%= (render_document_show_field_value document, :field => 'tipo_conteudo') %></dd>
+
+	    <dt class="blacklight-texto">Texto:</dt>
+	    <dd class="blacklight-texto"><%= (render_document_show_field_value document, :field => 'texto').gsub(/\n/, '<br />').html_safe %></dd>
+
+</dl>
