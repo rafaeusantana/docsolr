@@ -1,3 +1,5 @@
+"""Faz Solr indexar CSVs depois de dividir por dia"""
+
 import os
 import subprocess
 
