@@ -14,6 +14,6 @@
 	    <dd class="blacklight-tipo_conteudo"><%= (render_document_show_field_value document, :field => 'tipo_conteudo') %></dd>
 
 	    <dt class="blacklight-texto">Texto:</dt>
-	    <dd class="blacklight-texto"><%= (render_document_show_field_value document, :field => 'texto').gsub(/\n/, '<br />').html_safe %></dd>
+	    <dd class="blacklight-texto"><%= textoFormatado(render_document_show_field_value document, :field => 'texto') %></dd>
 
 </dl>
