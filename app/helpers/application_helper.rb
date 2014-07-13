@@ -7,13 +7,22 @@ module ApplicationHelper
 
   # Substitui ((NG))texto((CL)) por <b>texto</b>
   def tagNegrito s
-    s=s.gsub(/(\(\(NG\)\)((?!\(\(NG\)\)).)*\(\(CL\)\))/){|m|m.gsub(/\(\(NG\)\)/,'<b>').gsub(/\(\(CL\)\)/,'</b>')}
-    s
+    s.gsub(/(\(\(NG\)\)((?!\(\(NG\)\)).)*\(\(CL\)\))/i){|m|m.gsub(/\(\(NG\)\)/i,'<b>').gsub(/\(\(CL\)\)/i,'</b>')}
+  end
+
+  # Substitui ((TITULO))titulo((TEXTO)) por <h4><b>titulo</b></h4>
+  def tagTitulo s
+    s.gsub(/(\(\(TITULO\)\)((?!\(\(TITULO\)\)).)*\(\(TEXTO\)\))/i){|m|m.gsub(/\(\(TITULO\)\)/i,'<h4><b>').gsub(/\(\(TEXTO\)\)/i,'</b></h4>')}
+  end
+
+  # Substitui ((tag)) por ''
+  def retirarTags s
+    s.gsub(/\(\(NG\)\)/i,'').gsub(/\(\(CL\)\)/i,'').gsub(/\(\(TITULO\)\)/i,'').gsub(/\(\(TEXTO\)\)/i,'')
   end
 
   # Retorna texto com formatacao HTML
   def textoFormatado s
-    tagNegrito(s.gsub(/\n/, '<br />')).html_safe
+    retirarTags(tagTitulo(tagNegrito(s.gsub(/\n/, '<br />')))).html_safe
   end
 
   # Retorna texto sem formatacao HTML

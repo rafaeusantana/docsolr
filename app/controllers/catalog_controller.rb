@@ -133,7 +133,7 @@ class CatalogController < ApplicationController
     # solr request handler? The one set in config[:default_solr_parameters][:qt],
     # since we aren't specifying it otherwise. 
     
-    config.add_search_field 'texto', :label => 'Texto'
+    #config.add_search_field 'texto', :label => 'Texto'
     
 
     # Now we see how to over-ride Solr request handler defaults, in this
