@@ -1,8 +1,12 @@
 Rails.application.routes.draw do
+  get 'sobre' => 'application#sobre'
+  get 'baixar' => 'application#baixar'
+
   root :to => "catalog#index"
   blacklight_for :catalog
   Blacklight::Marc.add_routes(self)
   devise_for :users
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
