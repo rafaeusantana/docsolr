@@ -20,7 +20,7 @@ pt-BR:
       next: 'próx &raquo;'
 
   blacklight:
-    application_name: 'DOC São Paulo'
+    application_name: 'DOM-SP (Experimental!)'
 
     header_links:
       login: 'Acessar'

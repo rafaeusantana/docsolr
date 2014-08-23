@@ -13,3 +13,17 @@
  *= require_tree .
  *= require_self
  */
+
+#header-navbar .navbar-brand {
+    width: inherit;
+    height: inherit;
+    background: none;
+    display: inherit;
+    text-indent: inherit;
+    white-space: inherit;
+    overflow: inherit;
+    padding-right: inherit;
+    margin-right: inherit;
+    padding-left: inherit;
+
+}
