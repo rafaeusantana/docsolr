@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <!-- Mobile viewport optimization h5bp.com/ad -->
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+    <!-- Mobile IE allows us to activate ClearType technology for smoothing fonts for easy reading -->
+    <!--[if IEMobile]>
+      <meta http-equiv="cleartype" content="on">
+    <![endif]-->
+
+    <title><%= render_page_title %></title>
+    <%= opensearch_description_tag application_name, opensearch_catalog_path(:format => 'xml', :only_path => false) %>
+    <%= favicon_link_tag asset_path('favicon.ico') %>
+    <%= stylesheet_link_tag "application", media: "all" %>
+    <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %>
+    <%= content_for(:head) %>
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+  </head>
+  <body class="<%= render_body_class %>">
+  <%= render :partial => 'shared/header_navbar' %>
+
+  <%= render partial: 'shared/ajax_modal' %>
+
+  <div id="main-container" class="container">
+    <%= render :partial=>'/flash_msg', layout: 'shared/flash_messages' %>
+
+    <div class="row">
+      <%= yield %>
+    </div>
+  </div>
+
+  <%= render :partial => 'shared/footer' %>
+
+
+	<!-- Piwik -->
+	<script type="text/javascript">
+	  var _paq = _paq || [];
+	  _paq.push(['trackPageView']);
+	  _paq.push(['enableLinkTracking']);
+	  (function() {
+		var u=(("https:" == document.location.protocol) ? "https" : "http") + "://devcolab.each.usp.br/piwik/";
+		_paq.push(['setTrackerUrl', u+'piwik.php']);
+		_paq.push(['setSiteId', 2]);
+		var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0]; g.type='text/javascript';
+		g.defer=true; g.async=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+	  })();
+	</script>
+	<noscript><p><img src="http://devcolab.each.usp.br/piwik/piwik.php?idsite=2" style="border:0;" alt="" /></p></noscript>
+	<!-- End Piwik Code -->
+
+
+  </body>
+</html>
