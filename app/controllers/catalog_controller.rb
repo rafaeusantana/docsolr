@@ -60,9 +60,11 @@ class CatalogController < ApplicationController
     #
     # :show may be set to false if you don't want the facet to be drawn in the 
     # facet bar
-    #config.add_facet_field 'format', :label => 'Format'
-    #config.add_facet_field 'pub_date', :label => 'Publication Year', :single => true
-    #config.add_facet_field 'subject_topic_facet', :label => 'Topic', :limit => 20 
+    config.add_facet_field 'secretaria_facet', :label => 'Secretaria', :limit => 10 
+    config.add_facet_field 'orgao_facet', :label => 'Orgão', :limit => 10 
+    config.add_facet_field 'tipo_conteudo_facet', :label => 'Tipo de Conteúdo', :limit => 10 
+    #config.add_facet_field 'secretaria_facet', :label => 'Publication Year', :single => true
+    #config.add_facet_field 'tipo_conteudo_facet', :label => 'Topic', :limit => 20 
     #config.add_facet_field 'language_facet', :label => 'Language', :limit => true 
     #config.add_facet_field 'lc_1letter_facet', :label => 'Call Number' 
     #config.add_facet_field 'subject_geo_facet', :label => 'Region' 
@@ -70,17 +72,19 @@ class CatalogController < ApplicationController
 
     #config.add_facet_field 'example_pivot_field', :label => 'Pivot Field', :pivot => ['format', 'language_facet']
 
-    #config.add_facet_field 'example_query_facet_field', :label => 'Publish Date', :query => {
-       #:years_5 => { :label => 'within 5 Years', :fq => "pub_date:[#{Time.now.year - 5 } TO *]" },
-       #:years_10 => { :label => 'within 10 Years', :fq => "pub_date:[#{Time.now.year - 10 } TO *]" },
-       #:years_25 => { :label => 'within 25 Years', :fq => "pub_date:[#{Time.now.year - 25 } TO *]" }
-    #}
+    config.add_facet_field 'data', :label => 'Data de Publicação', :query => {
+      :week_1 => { :label => 'Menos de 1 semana', :fq => "data:[#{Date.today - 7.days}T00:00:00.000Z TO *]" },
+      :week_1 => { :label => 'Menos de 1 mês', :fq => "data:[#{Date.today - 1.months}T00:00:00.000Z TO *]" },
+      :years_1 => { :label => 'Menos de 1 ano', :fq => "data:[#{Date.today - 1.years}T00:00:00Z TO *]" },
+      :years_5 => { :label => 'Menos de 5 anos', :fq => "data:[#{Date.today - 5.years}T00:00:00Z TO *]" },
+      :years_mais_5 => { :label => 'Mais de 5 anos', :fq => "data:[* TO #{Date.today - 5.years}T00:00:00Z]" }
+    }
 
 
     # Have BL send all facet field names to Solr, which has been the default
     # previously. Simply remove these lines if you'd rather use Solr request
     # handler defaults, or have no facets.
-    #config.add_facet_fields_to_solr_request!
+    config.add_facet_fields_to_solr_request!
 
     # solr fields to be displayed in the index (search results) view
     #   The ordering of the field names is the order of the display 
@@ -187,4 +191,41 @@ class CatalogController < ApplicationController
     config.spell_max = 5
   end
 
+    # get search results from the solr index
+    def index
+      (@response, @document_list) = get_search_results
+      
+      respond_to do |format|
+        format.html { }
+        format.rss  { render :layout => false }
+        format.atom { render :layout => false }
+        format.json do
+          render json: render_search_results_as_json
+        end
+
+        additional_response_formats(format)
+        document_export_formats(format)
+      end
+    end
+
+   # displays values and pagination links for a single facet field
+    def facet
+      @facet = blacklight_config.facet_fields[params[:id]]
+      @response = get_facet_field_response(@facet.field, params)
+      @display_facet = @response.facets.first
+
+      # @pagination was deprecated in Blacklight 5.1
+      @pagination = facet_paginator(@facet, @display_facet)
+
+
+      respond_to do |format|
+        # Draw the facet selector for users who have javascript disabled:
+        format.html 
+        format.json { render json: render_facet_list_as_json }
+
+        # Draw the partial for the "more" facet modal window:
+        format.js { render :layout => false }
+      end
+    end
+    
 end 

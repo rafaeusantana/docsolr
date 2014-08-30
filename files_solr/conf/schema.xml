@@ -932,9 +932,13 @@
    <field name="retranca" type="string" indexed="true" stored="true" /> 
    <field name="data" type="date" indexed="true" stored="true"/>
    <field name="tipo_conteudo" type="text_general" indexed="true" stored="true"/>
+   <field name="tipo_conteudo_facet" type="string" indexed="true" stored="false"/>
    <field name="secretaria" type="text_general" indexed="true" stored="true"/>
+   <field name="secretaria_facet" type="string" indexed="true" stored="false"/>
    <field name="orgao" type="text_general" indexed="true" stored="true"/>
+   <field name="orgao_facet" type="string" indexed="true" stored="false"/>
    <field name="texto" type="text_general" indexed="true" stored="true"/>
+   <field name="texto_facet" type="string" indexed="true" stored="false"/>
 
    <!-- catchall field, containing all other searchable text fields (implemented
         via copyField further on in this schema  -->
@@ -1026,6 +1030,13 @@
    <copyField source="features" dest="text"/>
    <copyField source="includes" dest="text"/>
    <copyField source="manu" dest="manu_exact"/>
+   
+   <!-- Copia conteudo para os campos das facets -->
+   <copyField source="tipo_conteudo" dest="tipo_conteudo_facet"/>
+   <copyField source="secretaria" dest="secretaria_facet"/>
+   <copyField source="orgao" dest="orgao_facet"/>
+   <copyField source="texto" dest="texto_facet"/>
+
 
    <!-- Copy the price into a currency enabled field (default USD) -->
    <copyField source="price" dest="price_c"/>
