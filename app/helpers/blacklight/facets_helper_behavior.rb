@@ -64,6 +64,16 @@ module Blacklight::FacetsHelperBehavior
     return display && display_facet.items.present?
   end
 
+  # retorna as datas do intervalo de datas
+  def date_range
+    return {:date_range_begin=>nil,:date_range_end=>nil} if !params[:date_range]
+    
+    date_range = /(\[.*\])/.match(params[:date_range])
+    dates = date_range.to_s.scan(/([0-9]{4}-[0-9]{2}-[0-9]{2})/) if date_range
+
+    {:date_range_begin=>formatarData(dates[0][0]),:date_range_end=>formatarData(dates[1][0])}
+  end
+
   ##
   # Determine whether a facet should be rendered as collapsed or not.
   #   - if the facet is 'active', don't collapse

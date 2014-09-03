@@ -127,6 +127,11 @@ module Blacklight
         end      
       end
     end
+
+    # altera o padrao * TO * para o intervalo de datas fornecido pelo usuario
+    def add_date_range_fq(facet_query)
+      facet_query["date_range"][:fq]=params["date_range"] if (facet_query["date_range"] && params["date_range"])
+    end
     
     ##
     # Add appropriate Solr facetting directives in, including
@@ -152,6 +157,7 @@ module Blacklight
           when facet.pivot
             solr_parameters.append_facet_pivot with_ex_local_param(facet.ex, facet.pivot.join(","))
           when facet.query
+	    add_date_range_fq facet.query
             solr_parameters.append_facet_query facet.query.map { |k, x| with_ex_local_param(facet.ex, x[:fq]) } 
           else
             solr_parameters.append_facet_fields with_ex_local_param(facet.ex, facet.field)
@@ -258,6 +264,7 @@ module Blacklight
     ##
     # Convert a facet/value pair into a solr fq parameter
     def facet_value_to_fq_string(facet_field, value) 
+
       facet_config = blacklight_config.facet_fields[facet_field]
 
       local_params = []
@@ -268,6 +275,7 @@ module Blacklight
 
       fq = case
         when (facet_config and facet_config.query)
+          add_date_range_fq facet_config.query
           facet_config.query[value][:fq]
         when (facet_config and facet_config.date)
           # in solr 3.2+, this could be replaced by a !term query

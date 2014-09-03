@@ -73,7 +73,7 @@ class CatalogController < ApplicationController
     #config.add_facet_field 'example_pivot_field', :label => 'Pivot Field', :pivot => ['format', 'language_facet']
 
     config.add_facet_field 'data', :label => 'Data de Publicação', :query => {
-      :week_1 => { :label => 'Menos de 1 semana', :fq => "data:[#{Date.today - 7.days}T00:00:00.000Z TO *]" },
+      :date_range => { :label => 'Intervalo de Datas', :fq => "data:[* TO *]" }, :week_1 => { :label => 'Menos de 1 semana', :fq => "data:[#{Date.today - 7.days}T00:00:00.000Z TO *]" },
       :week_1 => { :label => 'Menos de 1 mês', :fq => "data:[#{Date.today - 1.months}T00:00:00.000Z TO *]" },
       :years_1 => { :label => 'Menos de 1 ano', :fq => "data:[#{Date.today - 1.years}T00:00:00Z TO *]" },
       :years_5 => { :label => 'Menos de 5 anos', :fq => "data:[#{Date.today - 5.years}T00:00:00Z TO *]" },
@@ -88,12 +88,6 @@ class CatalogController < ApplicationController
 
     # solr fields to be displayed in the index (search results) view
     #   The ordering of the field names is the order of the display 
-    #config.add_index_field 'title_display', :label => 'Title'
-    #config.add_index_field 'title_vern_display', :label => 'Title'
-    #config.add_index_field 'author_display', :label => 'Author'
-    #config.add_index_field 'author_vern_display', :label => 'Author'
-    #config.add_index_field 'format', :label => 'Format'
-    #config.add_index_field 'language_facet', :label => 'Language'
     config.add_index_field 'data', :label => 'Data'
     config.add_index_field 'secretaria', :label => 'Secretaria'
     config.add_index_field 'orgao', :label => 'Orgão'
@@ -103,16 +97,6 @@ class CatalogController < ApplicationController
 
     # solr fields to be displayed in the show (single result) view
     #   The ordering of the field names is the order of the display 
-    #config.add_show_field 'title_display', :label => 'Title'
-    #config.add_show_field 'title_vern_display', :label => 'Title'
-    #config.add_show_field 'subtitle_display', :label => 'Subtitle'
-    #config.add_show_field 'subtitle_vern_display', :label => 'Subtitle'
-    #config.add_show_field 'author_display', :label => 'Author'
-    #config.add_show_field 'author_vern_display', :label => 'Author'
-    #config.add_show_field 'format', :label => 'Format'
-    #config.add_show_field 'url_fulltext_display', :label => 'URL'
-    #config.add_show_field 'url_suppl_display', :label => 'More Information'
-    #config.add_show_field 'language_facet', :label => 'Language'
     config.add_show_field 'data', :label => 'Data'
     config.add_show_field 'secretaria', :label => 'Secretaria'
     config.add_show_field 'orgao', :label => 'Orgão'

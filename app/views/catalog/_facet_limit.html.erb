@@ -1,10 +1,36 @@
 <ul class="facet-values list-unstyled">
   <% paginator = facet_paginator(facet_field, display_facet)
   %>
+
   <%
   paginator.items.each do |item|
     next if item.value.length < 2
   -%>
+   <% if item.value=='date_range' %>
+     <li class="date_range"> 
+
+	    <input type="date" class="form-control" placeholder="Data Inicial" name="date_range_begin" id="date_range_begin" value="<%=date_range[:date_range_begin]%>" />
+            <input type="date" class="form-control" placeholder="Data Final" name="date_range_end" id="date_range_end" value="<%=date_range[:date_range_end]%>" />
+	    <%if date_range[:date_range_begin] && date_range[:date_range_end]%>
+		<%=item.hits%> documentos
+		<a class="remove" href="<%=reject_param(reject_param(request.original_url, "date_range"), "f[data][]", "date_range")%>">
+
+		    <span class="glyphicon glyphicon-remove"></span>
+		    <span class="sr-only">
+
+			[remove]
+
+		    </span>
+
+		</a>
+	    <% end %>
+	    <input type="button" value="Filtrar" style="width:100%" class="btn btn-primary btn-sm" name="date_range_button" id="date_range_button" />
+
+	    <br />
+
+
+     </li>
+   <% else %>
     <li>
     <% if facet_in_params?( solr_field, item.value ) %>              
         <%= render_selected_facet_value(solr_field, item) %>              
@@ -12,6 +38,8 @@
         <%= render_facet_value(solr_field, item) %>              
     <% end -%>
     </li>
+   <% end %>
+
   <% end %>
 
   <% if paginator.has_next? and params[:action] != "facet" %>

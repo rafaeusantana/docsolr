@@ -32,4 +32,18 @@ module ApplicationHelper
     ActionController::Base.helpers.sanitize(textoFormatado(s).gsub(/(\<br \/\>)/,'<br /> '), :tags=>tags)
   end
 
+def reject_param(url, param_to_reject, val=nil)
+	require 'cgi'
+	uri = URI(url) #=> #<URI::HTTP:0x007fbe25141a78 URL:http://example.com/path?param1=one&param2=2&param3=something3>
+	params = CGI.parse(uri.query) #=> {"param1"=>["one"], "param2"=>["2"], "param3"=>["something3"]}
+	if !val.nil?
+	  params[param_to_reject].delete(val) if params[param_to_reject]
+	else
+	  params.delete(param_to_reject)
+	end
+	uri.query = URI.encode_www_form(params) #=> "param2=2&param3=something3"
+	uri.to_s #=> "http://example.com/path?param2=2&param3=something3"
+end
+
+
 end
