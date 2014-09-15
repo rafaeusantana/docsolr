@@ -73,10 +73,10 @@ class CatalogController < ApplicationController
     #config.add_facet_field 'example_pivot_field', :label => 'Pivot Field', :pivot => ['format', 'language_facet']
 
     config.add_facet_field 'data', :label => 'Data de Publicação', :query => {
-      :date_range => { :label => 'Intervalo de Datas', :fq => "data:[* TO *]" }, :week_1 => { :label => 'Menos de 1 semana', :fq => "data:[#{Date.today - 7.days}T00:00:00.000Z TO *]" },
-      :week_1 => { :label => 'Menos de 1 mês', :fq => "data:[#{Date.today - 1.months}T00:00:00.000Z TO *]" },
-      :years_1 => { :label => 'Menos de 1 ano', :fq => "data:[#{Date.today - 1.years}T00:00:00Z TO *]" },
-      :years_5 => { :label => 'Menos de 5 anos', :fq => "data:[#{Date.today - 5.years}T00:00:00Z TO *]" },
+      :date_range => { :label => 'Intervalo de Datas', :fq => "data:[* TO *]" }, :week_1 => { :label => 'Menos de 1 semana', :fq => "data:[#{Date.today - 7.days}T00:00:00.000Z TO #{Date.today}T00:00:00.000Z]" },
+      :month_1 => { :label => 'Menos de 1 mês', :fq => "data:[#{Date.today - 1.months}T00:00:00.000Z TO #{Date.today}T00:00:00.000Z]" },
+      :years_1 => { :label => 'Menos de 1 ano', :fq => "data:[#{Date.today - 1.years}T00:00:00Z TO #{Date.today}T00:00:00.000Z]" },
+      :years_5 => { :label => 'Menos de 5 anos', :fq => "data:[#{Date.today - 5.years}T00:00:00Z TO #{Date.today}T00:00:00.000Z]" },
       :years_mais_5 => { :label => 'Mais de 5 anos', :fq => "data:[* TO #{Date.today - 5.years}T00:00:00Z]" }
     }
 
