@@ -13,7 +13,7 @@
             <input type="date" class="form-control" placeholder="Data Final" name="date_range_end" id="date_range_end" value="<%=date_range[:date_range_end]%>" />
 	    <%if date_range[:date_range_begin] && date_range[:date_range_end]%>
 		<%=item.hits%> documentos
-		<a class="remove" href="<%=reject_param(reject_param(request.original_url, "date_range"), "f[data][]", "date_range")%>">
+		<a class="remove" href="<%=search_action_path(remove_facet_params('data','date_range',params))%>">
 
 		    <span class="glyphicon glyphicon-remove"></span>
 		    <span class="sr-only">
