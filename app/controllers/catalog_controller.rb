@@ -178,17 +178,50 @@ class CatalogController < ApplicationController
     # get search results from the solr index
     def index
       (@response, @document_list) = get_search_results
-      
       respond_to do |format|
         format.html { }
         format.rss  { render :layout => false }
         format.atom { render :layout => false }
+        hash_result = render_search_results_as_json
+        hash_result[:pages][:is_first_page] = hash_result[:pages][:"first_page?"]
+        hash_result[:pages][:is_last_page] = hash_result[:pages][:"last_page?"]
+        hash_result[:pages].delete(:"first_page?")
+        hash_result[:pages].delete(:"last_page?")
+    
         format.json do
-          render json: render_search_results_as_json
+          render json: {:response => hash_result}
+        end
+        format.xml do
+          render xml: JSON.parse(hash_result.to_json).to_xml(:root=>"response")
         end
 
         additional_response_formats(format)
         document_export_formats(format)
+      end
+    end
+
+    def render_search_results_as_json
+      {docs: @document_list, facets: search_facets_as_json, pages: pagination_info(@response)}
+    end
+
+    # get single document from the solr index
+    def show
+      @response, @document = get_solr_response_for_doc_id   
+
+      respond_to do |format|
+        format.html {setup_next_and_previous_documents}
+
+        format.json { render json: {:response => @document } }
+	format.xml { render xml: @document.to_xml(:root=>'response') }
+
+        # Add all dynamically added (such as by document extensions)
+        # export formats.
+        @document.export_formats.each_key do | format_name |
+          # It's important that the argument to send be a symbol;
+          # if it's a string, it makes Rails unhappy for unclear reasons. 
+          format.send(format_name.to_sym) { render :text => @document.export_as(format_name), :layout => false }
+        end
+        
       end
     end
 

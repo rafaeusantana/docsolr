@@ -48,3 +48,4 @@ gem "devise-guests", "~> 0.3"
 gem "blacklight-marc", "~> 5.0"
 
 gem "slim"
+gem 'pry', :group => :development

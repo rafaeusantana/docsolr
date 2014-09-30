@@ -1,6 +1,5 @@
 <%# default partial to display solr document fields in catalog index view -%>
 <dl class="document-metadata dl-horizontal dl-invert">
-
 	    <dt class="blacklight-data">Data:</dt>
 	    <dd class="blacklight-data"><%= formatarData(render_index_field_value document, :field => 'data') %></dd>
 	    <dt class="blacklight-assunto">Assunto:</dt>
@@ -8,4 +7,6 @@
 
 	    <dt class="blacklight-texto">Texto:</dt>
 	    <dd class="blacklight-texto"><%= textoNaoFormatado((render_index_field_value document, :field => 'texto').to_s[0..400], ['em'])%></dd>
+	    <dt>Formatos:</dt>
+            <dd><a href="/<%=document.id%>.json"><img src='/json.gif' /></a> <a href="/<%=document.id%>.xml"><img src='/xml.gif' /></a></dd>
 </dl>
