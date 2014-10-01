@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   get 'sobre' => 'application#sobre'
   get 'baixar' => 'application#baixar'
+  get 'buscaavancada' => 'application#buscaavancada'
 
   root :to => "catalog#index"
   blacklight_for :catalog

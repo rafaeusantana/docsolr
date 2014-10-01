@@ -1,0 +1,25 @@
+h2 Busca Avançada
+
+p Por padrão a busca textual é feita no campo Texto.
+
+p Para fazer uma busca através dos outros metadados, utilize a seguinte sintaxe:
+
+p campo1:valor1 campo2:valor2 campo3:valor3 ...
+
+p Os campos podem ser repetidos para colocar mais de uma restrição.
+
+h3 Campos de busca
+
+p Os campos que podem ser usados na busca são:
+
+p secretaria, orgao, tipo_conteudo, texto, data
+
+h3 Exemplos
+
+p 1. secretaria:educação orgao:diretoria texto:cronograma
+
+p 2. secretaria:"verde e meio ambiente" tipo_conteudo:editais aprovação
+
+p 3. data:[2012-10-31T00:00:00.000Z TO 2012-12-31T00:00:00.000Z]
+
+p Repare que na busca (2) não foi especificado o campo para a palavra "aprovação". Nesse caso, o campo padrão de busca é o campo Texto.
