@@ -34,3 +34,17 @@
   margin-bottom: 5px;
 }
 
+.input-group{
+  float:left;
+}
+
+.more-information{
+  float:left;
+  margin-left: 10px;
+  margin-top: 15px;
+}
+
+.search-export-formats{
+  text-align:right;
+  margin-bottom: 10px;
+}

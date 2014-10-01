@@ -16,8 +16,10 @@ function initPage(){
 		monthNames: ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'],
 		monthNamesShort: ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez']
 	    }
-	    $("#date_range_begin").datepicker(a);
-	    $("#date_range_end").datepicker(a);
+	    if($("#date_range_begin").prop('type')!="date"){
+	    	$("#date_range_begin").datepicker(a);
+	    	$("#date_range_end").datepicker(a);
+	    }
 	    $("#date_range_button").click(function(){
 		search_by_date_range($("#date_range_begin").val(), $("#date_range_end").val());
 	    });
@@ -30,17 +32,19 @@ function search_by_date_range(date_range_begin, date_range_end){
 	else if(date_range_end=='')date_range_end=current_date();
 
 	// coloca no formato correto
-	split = date_range_begin.split('/');
-	date_range_begin = split[2]+'-'+split[1]+'-'+split[0];
-	split = date_range_end.split('/');
-	date_range_end = split[2]+'-'+split[1]+'-'+split[0];
+        separador = "/";
+	if(date_range_begin.indexOf("-")!==-1) separador = "-";
+	split = date_range_begin.split(separador);
+	if(split[2].length==4)date_range_begin = split[2]+'-'+split[1]+'-'+split[0];
+	split = date_range_end.split(separador);
+	if(split[2].length==4)date_range_end = split[2]+'-'+split[1]+'-'+split[0];
 
 	redirect_to = window.location.href;
 
 	redirect_to = removeParam("date_range", redirect_to);
 	redirect_to = removeParam("f[data][]", redirect_to, "date_range");
 
-	redirect_to = insertParam("date_range","data:["+date_range_begin+"T00:00:00.000Z TO "+date_range_end+"T23:59:59.999Z]", redirect_to);
+	redirect_to = insertParam("date_range","data:["+date_range_begin+"T00:00:00.000Z TO "+date_range_end+"T00:00:00.000Z]", redirect_to);
 	redirect_to = insertParam("f[data][]","date_range",redirect_to);
 
 	window.location.assign(redirect_to);
