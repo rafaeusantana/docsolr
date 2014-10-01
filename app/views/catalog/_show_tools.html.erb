@@ -15,6 +15,9 @@
   <div class="panel-body">
   <ul class="nav">
       <li>
+        <a href="<%=request.fullpath%>.json"><img src='/json.gif' /></a> <a href="<%=request.fullpath%>.xml"><img src='/xml.gif' /></a>
+      </li>
+      <li>
         <%= render_show_doc_actions @document %>
       </li>
       <% if (@document.respond_to?(:export_as_mla_citation_txt) || @document.respond_to?(:export_as_apa_citation_txt)) %>

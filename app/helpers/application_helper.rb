@@ -5,6 +5,15 @@ module ApplicationHelper
     data[8..9]+'/'+data[5..6]+'/'+data[0..3]
   end
 
+  def search_url_format(format)
+    fullpath = request.fullpath
+    if fullpath.include?("catalog") && !fullpath.include?(format)
+      fullpath = fullpath.gsub("catalog","catalog."+format)
+    else
+      fullpath = fullpath.gsub("?","catalog."+format+"?")
+    end
+  end
+
   # Substitui ((NG))texto((CL)) por <b>texto</b>
   def tagNegrito s
     s.gsub(/(\(\(NG\)\)((?!\(\(NG\)\)).)*\(\(CL\)\))/i){|m|m.gsub(/\(\(NG\)\)/i,'<b>').gsub(/\(\(CL\)\)/i,'</b>')}
