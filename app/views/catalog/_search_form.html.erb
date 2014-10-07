@@ -18,12 +18,9 @@
           <span class="submit-search-text"><%=t('blacklight.search.form.submit')%></span>
           <span class="glyphicon glyphicon-search"></span>
         </button>
+
+		<%= link_to '?', url_for(:controller => 'application', :action => 'buscaavancada'), :class => 'btn btn-primary' %>
         </span>
 
       </div> 
-      <div class="more-information">
-        <span>
-	  &nbsp;<a href="/buscaavancada">Busca Avançada</a>
-	</span>
-      </div>
   <% end %>
