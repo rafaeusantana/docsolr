@@ -8,5 +8,5 @@
 	    <dt class="blacklight-texto">Texto:</dt>
 	    <dd class="blacklight-texto"><%= textoNaoFormatado((render_index_field_value document, :field => 'texto').to_s[0..400], ['em'])%></dd>
 	    <dt>Formatos:</dt>
-            <dd><a href="/<%=document.id%>.json"><img src='/json.gif' /></a> <a href="/<%=document.id%>.xml"><img src='/xml.gif' /></a></dd>
+			<dd><%= botaoExportador("JSON","/"+document.id+".json") %> <%= botaoExportador("XML","/"+document.id+".xml") %></dd>
 </dl>

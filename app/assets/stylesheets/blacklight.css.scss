@@ -6,3 +6,13 @@
 font-weight: bold;
 font-style: normal
 }
+
+.nav > li > a.btn-primary:hover, .nav > li > a.btn-primary:focus {
+  text-decoration: none;
+  background-color: #3071A9;
+}
+
+.nav > li > a.btn-primary {
+  width: 100px;
+  margin: 10px auto 10px auto;
+}

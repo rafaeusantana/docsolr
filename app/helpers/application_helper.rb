@@ -42,4 +42,8 @@ module ApplicationHelper
     ActionController::Base.helpers.sanitize(textoFormatado(s).gsub(/(\<br \/\>)/,'<br /> '), :tags=>tags)
   end
 
+  def botaoExportador(texto, link)
+    ('<a class="btn btn-primary btn-xs" href="%s" role="button"><span class="glyphicon glyphicon glyphicon-download"></span> %s</a>' % [link, texto]).html_safe
+  end
+
 end
