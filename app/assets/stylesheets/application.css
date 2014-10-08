@@ -91,7 +91,7 @@ a:hover, a:focus {
 .btn-primary {
     background-color: #CBA02F;
     border-color: #B48E29;
-	text-shadow: 1px 1px 1px #000;
+	text-shadow: 1px 1px 1px #777;
 }
 #search-navbar {
 	background-color: #892103;
