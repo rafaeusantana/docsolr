@@ -43,8 +43,18 @@
     line-height: 15px;
     font-size: 30px;
 }
+.navbar {
+	border-top: 0px;
+}
 h1 > span.font1, h1 > span.font2 {
     font-size: 60px;
+}
+.navbar-default .navbar-nav > li > a {
+    color: #896403;
+}
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+    color: #2D0A00;
+	background-color: #FFDED6;
 }
 
 
@@ -81,6 +91,7 @@ a:hover, a:focus {
 .btn-primary {
     background-color: #CBA02F;
     border-color: #B48E29;
+	text-shadow: 1px 1px 1px #000;
 }
 #search-navbar {
 	background-color: #892103;
@@ -95,6 +106,18 @@ a:hover, a:focus {
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open > .btn-primary.dropdown-toggle {
     background-color: #9E7400;
     border-color: #7D5C03;
+}
+
+.pagination > li > a, .pagination > li > span {
+    color: #896403;
+}
+.pagination > .active > a, .pagination > .active > a:hover, .pagination > .active > a:focus, .pagination > .active > span, .pagination > .active > span:hover, .pagination > .active > span:focus {
+	background-color: #896403;
+    border-color: #896403;
+
+}
+.pagination > li > a:hover, .pagination > li > a:focus, .pagination > li > span:hover, .pagination > li > span:focus {
+    color: #896403;
 }
 
 .font1 {

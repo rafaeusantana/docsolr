@@ -43,7 +43,7 @@ module ApplicationHelper
   end
 
   def botaoExportador(texto, link)
-    ('<a class="btn btn-primary btn-xs" href="%s" role="button"><span class="glyphicon glyphicon glyphicon-download"></span> %s</a>' % [link, texto]).html_safe
+    ('<a class="btn btn-primary btn-sm" href="%s" role="button"><span class="glyphicon glyphicon glyphicon-download"></span> %s</a>' % [link, texto]).html_safe
   end
 
   def nomeEstilizado
