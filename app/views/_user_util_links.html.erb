@@ -16,9 +16,11 @@
     <li>
 	    <%= link_to 'Baixar', baixar_path %>
     </li>
+    <% if false %>
     <li>
 	    <%= link_to 'Sobre', sobre_path %>
     </li>
+    <% end %>
   </ul>
 
   <% if has_user_authentication_provider? %>

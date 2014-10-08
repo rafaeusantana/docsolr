@@ -13,7 +13,18 @@
  *= require jquery-ui
  *= require_tree .
  *= require_self
+
+ paleta http://paletton.com/#uid=33t0u0koCpr1OTcffvLvnhcUL5E
  */
+
+@font-face {
+    font-family: diario;
+    src: url('/fonts/SpecialElite.ttf');
+}
+@font-face {
+    font-family: livre;
+    src: url('/fonts/FingerPaint-Regular.ttf');
+}
 
 #header-navbar .navbar-brand {
     width: inherit;
@@ -27,6 +38,13 @@
     margin-right: inherit;
     padding-left: inherit;
 
+}
+.navbar-brand {
+    line-height: 15px;
+    font-size: 30px;
+}
+h1 > span.font1, h1 > span.font2 {
+    font-size: 60px;
 }
 
 
@@ -47,4 +65,43 @@
 .search-export-formats{
   text-align:right;
   margin-bottom: 10px;
+}
+
+a {
+	color: #896403;
+}
+a:hover, a:focus {
+    color: #2D0A00;
+}
+.form-control:focus {
+	box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset, 0px 0px 8px rgba(203, 160, 47, 0.6);
+    border-color: rgb(203, 160, 47);
+}
+
+.btn-primary {
+    background-color: #CBA02F;
+    border-color: #B48E29;
+}
+#search-navbar {
+	background-color: #892103;
+	border-color: #2D0A00;
+    /*background-color: #5887A1;
+    border-color: #063B57;*/
+	box-shadow: 0px 1px 5px #000;
+}
+.nav > li > a.btn-primary:hover, .nav > li > a.btn-primary:focus {
+    background-color: #9E7400;
+}
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open > .btn-primary.dropdown-toggle {
+    background-color: #9E7400;
+    border-color: #7D5C03;
+}
+
+.font1 {
+    font-family: diario;
+    color: black;
+}
+.font2 {
+    font-family: livre;
+    color: #CB522F;
 }
