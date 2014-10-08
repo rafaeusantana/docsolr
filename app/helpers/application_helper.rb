@@ -47,7 +47,7 @@ module ApplicationHelper
   end
 
   def nomeEstilizado
-    '<span class="font1">Diário</span><span class="font2">Livre</span>'.html_safe
+    '<span class="font1">Diário</span> <span class="font2">Livre</span>'.html_safe
   end
 
 end
