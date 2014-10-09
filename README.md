@@ -40,6 +40,8 @@ rails s
 
 Você poderá acessar o site em http://localhost:3000.
 
+***Atenção!!!:*** Caso você vá rodar o código em produção dessa forma, não esqueça de alterar as senhas no arquivo **config/secrets.yml** conforme as instruções no mesmo.
+
 
 **Configurações do Solr**
 
