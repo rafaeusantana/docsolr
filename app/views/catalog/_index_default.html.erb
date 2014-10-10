@@ -1,12 +1,16 @@
 <%# default partial to display solr document fields in catalog index view -%>
+<a class="link-documento" href="<%= url_for document %>">
 <dl class="document-metadata dl-horizontal dl-invert">
 	    <dt class="blacklight-data">Data:</dt>
 	    <dd class="blacklight-data"><%= formatarData(render_index_field_value document, :field => 'data') %></dd>
 	    <dt class="blacklight-assunto">Assunto:</dt>
-	    <dd class="blacklight-assunto"><%= link_to_document document, :label=>(render_index_field_value document, :field => 'secretaria')+' - '+(render_index_field_value document, :field => 'orgao')+' - '+(render_index_field_value document, :field => 'tipo_conteudo') %></dd>
+	    <dd class="blacklight-assunto"><%= render_index_field_value document, :field => 'secretaria')+' - '+(render_index_field_value document, :field => 'orgao')+' - '+(render_index_field_value document, :field => 'tipo_conteudo' %></dd>
 
 	    <dt class="blacklight-texto">Texto:</dt>
 	    <dd class="blacklight-texto"><%= textoNaoFormatado((render_index_field_value document, :field => 'texto').to_s[0..400], ['em'])%></dd>
+	    <% if false %>
 	    <dt>Formatos:</dt>
 			<dd><%= botaoExportador("JSON","/"+document.id+".json") %> <%= botaoExportador("XML","/"+document.id+".xml") %></dd>
+	    <% end %>
 </dl>
+</a>

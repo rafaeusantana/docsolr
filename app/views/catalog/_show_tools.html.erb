@@ -32,11 +32,13 @@
       <%= link_to t('blacklight.tools.endnote'), catalog_path(@document, :format => 'endnote') %>
       </li>
     <% end %>
+    <% if false %>
     <% if @document.respond_to?( :to_email_text ) %>
       <li class="email">
 	      <%= link_to '<span class="glyphicon glyphicon glyphicon-envelope"></span> '.html_safe+t('blacklight.tools.email'), email_catalog_path(:id => @document), {:id => 'emailLink', :class => 'btn btn-primary btn-xs', :data => {:ajax_modal => "trigger"}} %>
       </li>
     <%- end -%>
+    <% end %>
     
     <% if respond_to? :librarian_view_catalog_path and @document.respond_to?(:to_marc) %>
       <li class="librarian_view">
