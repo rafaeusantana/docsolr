@@ -59,6 +59,19 @@
 	<noscript><p><img src="http://devcolab.each.usp.br/piwik/piwik.php?idsite=2" style="border:0;" alt="" /></p></noscript>
 	<!-- End Piwik Code -->
 
+	<script type="text/javascript">
+		function fecharAviso() {
+			$('#aviso-questionario').css("display", "none");
+			$.cookie('aviso_questionario', 'fechado', { expires: 7, path: '/' });
+		}
+
+		$(document).ready(function() {
+		    if ($.cookie('aviso_questionario') == "fechado") {
+			$('#aviso-questionario').css("display", "none");
+		    }
+		});
+	</script>
+
 
   </body>
 </html>

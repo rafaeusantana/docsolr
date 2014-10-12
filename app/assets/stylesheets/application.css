@@ -154,3 +154,26 @@ a.link-documento dl:hover {
     font-family: livre;
     color: #CB522F;
 }
+
+#aviso-questionario {
+	position: fixed;
+	bottom: 0px;
+	z-index: 9999;
+	background-color: #892103;
+	width: 100%;
+	padding: 10px;
+	text-align: center;
+	text-shadow: 1px 1px 1px #777;
+}
+#aviso-questionario button {
+	float: right;
+}
+#aviso-questionario .titulo {
+	font-size: 18pt;
+}
+#aviso-questionario .subtitulo {
+	font-size: 16pt;
+}
+#aviso-questionario a {
+	color: white;
+}
