@@ -1,1 +1,34 @@
-h2 Baixar a Base
+h1 EM CONSTRUÇÃO
+
+h1 Baixar a base dos Diário Oficial Municipal de São Paulo (DOMSP)
+
+p Essa página fornece links para baixar a base do DOMSP, desde 2003. Isso pode ser útil caso você queira, por exemplo, realizar algum tipo de processamento em larga escala, ou desenvolver seu próprio site de visualização dela.
+p É importante ressaltar que esses arquivos podem possuir vários gigabytes de tamanho. O grande tamanho da base torna difícil que ela seja usada sem algum tipo de processamento automático por computador.
+
+
+h2 Torrent
+
+p 
+  | Para permitir um acesso mais resiliente e ágil à base, optou-se por utilizar o protocolo
+  a< href="https://pt.wikipedia.org/wiki/BitTorrent" Torrent
+  | . Porém, como ainda não e possível atualizar um torrent depois de sua publicação, os arquivos referentes ao ano atual serão disponibilizados pelo método convencional (HTTP).
+
+p
+  | Para baixar a base via torrent é possível que você precise instalar um cliente próprio. Recomendamos um dos seguintes, por serem software livre e disponíveis para diversos sistemas operacionais:
+  ul
+    li : a href="http://deluge-torrent.org" Deluge
+    li : a href="https://www.transmissionbt.com" Transmission
+p
+  | Porém existem muitas 
+  a< href="https://en.wikipedia.org/wiki/Comparison_of_BitTorrent_clients" opções de clientes para torrent
+  | .
+
+
+h2 Formatos da base
+
+p
+  | A base está disponibilizada em dois formatos: "bruto" e CSV. O primeiro contém todos os arquivos disponibilizados pela prefeitura, sem alteração nenhuma. Esses arquivvos foram então descompactados de seus ZIPs; inferidas as datas de publicação a partir dos nomes dos ZIPs; separados os TXTs dos DOCs, PDFs etc; inferidas e padronizadas as codificações dos TXTs; inferidos os metadados a partir das retrancas; agrupados os TXTs e seus metadados em um CSV por dia de publicação; que foram finalmente compactados em um 7z.
+p 
+  | Resumindo: as bases em CSV não contêm todos os arquivos (contém apenas os TXTs que conseguiram ser processados), porém devem ser muito mais fáceis de serem utilizadas do que as bases "brutas". Caso você queira utilizar todos os arquivos (como os DOCs e PDFs) ou os TXTs iniciais, terá que baixar e desbravar a base em formato "bruto". Boa sorte. ;) (Aqui estão os
+  a<> href="https://github.com/rafaeusantana/docsolr/tree/master/scripts" scripts que fizemos para fazer o tratamento da base
+  | [Python], talvez ajudem.)
