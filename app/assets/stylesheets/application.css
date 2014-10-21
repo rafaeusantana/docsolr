@@ -19,11 +19,11 @@
 
 @font-face {
     font-family: diario;
-    src: url('/fonts/SpecialElite.ttf');
+    src: url('../fonts/SpecialElite.ttf');
 }
 @font-face {
     font-family: livre;
-    src: url('/fonts/FingerPaint-Regular.ttf');
+    src: url('../fonts/FingerPaint-Regular.ttf');
 }
 
 #header-navbar .navbar-brand {
