@@ -35,7 +35,7 @@ listen "127.0.0.1:50002"
 timeout 30
 
 # feel free to point this anywhere accessible on the filesystem
-pid APP_PATH + "/unicorn.pid"
+pid APP_PATH + "/tmp/pids/unicorn.pid"
 
 # By default, the Unicorn logger will write to stderr.
 # Additionally, ome applications/frameworks log to stderr or stdout,
