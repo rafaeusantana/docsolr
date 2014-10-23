@@ -63,3 +63,6 @@ http://localhost:8080/solr/docsolr/update/csv?stream.file=/home/rafa/Downloads/s
 recomendável criar vários arquivos de no máximo algumas dezenas de mb e indexá-los através da api do solr.
 
 
+### Licença
+
+Este projeto está sob licença [AGPL](https://www.gnu.org/licenses/agpl.html).
