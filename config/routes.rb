@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   get 'sobre' => 'application#sobre'
   get 'baixar' => 'application#baixar'
+  get 'creditos' => 'application#creditos'
   get 'buscaavancada' => 'application#buscaavancada'
 
   root :to => "catalog#index"
