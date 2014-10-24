@@ -50,4 +50,31 @@ module ApplicationHelper
     '<span class="font1">Diário</span> <span class="font2">Livre</span>'.html_safe
   end
 
+  def linkQuestionario
+    'https://devcolab.each.usp.br/limesurvey/index.php/532824/lang-pt-BR'.html_safe
+  end
+
+  def gerarCreditosMK
+    lista = [
+      'Andrés M. R. Martano',
+      'Rafael Santana',
+      'Larissa Y. Oyadomari',
+      'Gisele S. Craveiro',
+      'Jorge Machado',
+      'Emerson Marques Pedro',
+      'Fabiano Angélico',
+      'Gabriel Ponzetto',
+      'Givanildo Andrade Lopes',
+      'Fernanda Campagnucci',
+      'Clarissa Carmona',
+      'Alice Fernanda Dias Gonçalves',
+      'Renato Mataruco Lopes',
+      'José de Jesús Pérez-Al',
+      'Selma Berezutchi',
+      'Paulo Roberto Dutra',
+      'Danilo Marasca Bertazzi',
+      'Domingas Soares de Oliveira',
+    ].sort! .collect { |x| "<li>%s</li>" % x } .join "\n"
+  end
+
 end
