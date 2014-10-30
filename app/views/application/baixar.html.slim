@@ -1,12 +1,10 @@
-h1 EM CONSTRUÇÃO
-
-h1 Baixar a base dos Diário Oficial Municipal de São Paulo (DOMSP)
+h1 Base do Diário Oficial Municipal de São Paulo (DOMSP)
 
 p Essa página fornece links para baixar a base do DOMSP, desde 2003. Isso pode ser útil caso você queira, por exemplo, realizar algum tipo de processamento em larga escala, ou desenvolver seu próprio site de visualização dela.
 p É importante ressaltar que esses arquivos podem possuir vários gigabytes de tamanho. O grande tamanho da base torna difícil que ela seja usada sem algum tipo de processamento automático por computador.
 
 
-h2 Torrent
+h2 Sobre o protocolo Torrent
 
 p 
   | Para permitir um acesso mais resiliente e ágil à base, optou-se por utilizar o protocolo
@@ -30,5 +28,46 @@ p
   | A base está disponibilizada em dois formatos: "bruto" e CSV. O primeiro contém todos os arquivos disponibilizados pela prefeitura, sem alteração nenhuma. Esses arquivvos foram então descompactados de seus ZIPs; inferidas as datas de publicação a partir dos nomes dos ZIPs; separados os TXTs dos DOCs, PDFs etc; inferidas e padronizadas as codificações dos TXTs; inferidos os metadados a partir das retrancas; agrupados os TXTs e seus metadados em um CSV por dia de publicação; que foram finalmente compactados em um 7z.
 p 
   | Resumindo: as bases em CSV não contêm todos os arquivos (contém apenas os TXTs que conseguiram ser processados), porém devem ser muito mais fáceis de serem utilizadas do que as bases "brutas". Caso você queira utilizar todos os arquivos (como os DOCs e PDFs) ou os TXTs iniciais, terá que baixar e desbravar a base em formato "bruto". Boa sorte. ;) (Aqui estão os
-  a<> href="https://github.com/rafaeusantana/docsolr/tree/master/scripts" scripts que fizemos para fazer o tratamento da base
+  a<> href="https://github.com/rafaeusantana/docsolr/tree/master/scripts" scripts que fizemos para o tratamento da base
   | [Python], talvez ajudem.)
+
+markdown:
+  ##Licença
+
+  As bases estão sob licença [Creative Commons por Atribuição 4.0](//creativecommons.org/licenses/by/4.0/).
+
+  ## Baixar
+
+table.table.table-hover.table-bordered
+  thead
+    tr
+      th Descrição 
+      th Data 
+      th Tamanho 
+      th Link
+  tbody
+    tr
+      td Base não tratada, com todos os arquivos originais. 
+      td 2003-2013 
+      td ~12Gb 
+      td : a href="arquivos-baixar/torrents/diarios-2003-2013.7z.torrent" torrent
+    tr
+      td Base tratada e convertida para CSVs.
+      td 2003-2013 
+      td ~0,7Gb 
+      td : a href="arquivos-baixar/torrents/diarios-CSV-2003-2013.7z.torrent" torrent
+    tr
+      td Base tratada e convertida para CSVs. Alguns metadados corrigidos.
+      td 2003-2013 
+      td ---
+      td EM BREVE
+    tr
+      td Base não tratada, com todos os arquivos originais. 
+      td 2014
+      td ---
+      td EM BREVE
+    tr
+      td Base tratada e convertida para CSVs.
+      td 2014
+      td ---
+      td EM BREVE
