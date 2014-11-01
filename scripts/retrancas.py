@@ -2,13 +2,15 @@
 #%s/),\ (/),\r(/g
 
 
-conteudoO = [ (1, 'A', 'DESPACHO'),
-(2, 'B', 'SERVIDORES'),
-(3, 'C', 'CONCURSOS'),
-(4, 'D', 'EDITAIS'),
-(5, 'E', 'LICITAÇÕES'),
-(6, 'F', 'CÂMARA MUNICIPAL'),
-(7, 'G', 'TRIBUNAL DE CONTAS') ]
+conteudoO = [
+    (1, 'A', 'DESPACHO'),
+    (2, 'B', 'SERVIDORES'),
+    (3, 'C', 'CONCURSOS'),
+    (4, 'D', 'EDITAIS'),
+    (5, 'E', 'LICITAÇÕES'),
+    (6, 'F', 'CÂMARA MUNICIPAL'),
+    (7, 'G', 'TRIBUNAL DE CONTAS')
+]
 
 #INSERT INTO `tb_retranca` (`chave`, `dt_retranca`, `dt_secretaria`, `dt_orgao`)
 #publicanteO = [

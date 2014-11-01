@@ -18,7 +18,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>
 #-----------------------------------------------------------------------------
 
-import os, sys
+import os, sys, shutil
 import csv
 import errno
 import subprocess
@@ -27,6 +27,18 @@ from datetime import timedelta, date
 
 #from contador import Contador
 
+MSG_AJUDA = """
+Processa os TXTs (com os textos dos artigos dos Diários Oficiais) dentro dos
+ZIPs disponibilizados pela prefeitura convertendo-os em CSVs.
+
+USO:
+script.py <dir_destino> <itens_origem>+
+
+dir_destino: diretório onde firam os CSVs gerados.
+itens_origem: zips "brutos", ou diretórios com zips. Os dois últimos caracteres
+do nome das pastas contendo os zips devem ser o número do ano dos zips contidos
+nela.
+"""
 
 UM_DIA = timedelta(days=1)
 csv.field_size_limit(100000000)
@@ -122,21 +134,22 @@ def decodificar_nome_txt(nome):
     achou = retrancas.RETRANCAS_ESP.get(retranca)
     if achou:
         secretaria, orgao = achou
-        conteudo = '-'
     else:
         # Verifica se está na tabela normal
-        tipo_letra = retranca[0:1]
         publicante = retranca[1:7]
-        conteudo = retrancas.CONTEUDOS.get(tipo_letra)
-        if not conteudo:
-            conteudo = '-'
-            print('ERRO CONTEUDO', tipo_letra, nome)
         achou = retrancas.RETRANCAS.get(publicante)
         if not achou:
             secretaria, orgao = '-', '-'
             print('ERRO SECR ORG', retranca, nome)
         else:
             secretaria, orgao = achou
+
+    # Tipo de Conteúdo
+    tipo_letra = retranca[0:1]
+    conteudo = retrancas.CONTEUDOS.get(tipo_letra)
+    if not conteudo:
+        conteudo = '-'
+        print('ERRO CONTEUDO', tipo_letra, nome)
 
     return {
         'Tipo do Conteúdo': conteudo,
@@ -147,17 +160,25 @@ def decodificar_nome_txt(nome):
 
 def processar_zip(zip, dir_destino):
     print("Processando:", zip)
-    os.system("rm -rf %s" % DIR_TEMP)
+
+    try:
+        shutil.rmtree(DIR_TEMP)
+    except FileNotFoundError:
+        pass
     criar_dir_temp()
+
     descompactar_zip(zip)
+
     data = obter_data_zip(zip)
     data_solr = data.strftime('%Y-%m-%dT00:00:00Z')
     data_id = data.strftime('%Y/%m/%d/')
+
     nome_csv = converter_nome_zip_csv(zip)
     caminho_csv_temp = os.path.join(DIR_TEMP, nome_csv)
     arq_csv = open(caminho_csv_temp, 'w')
     escritor = csv.DictWriter(arq_csv, ORDEM, dialect='unix')
     escritor.writeheader()
+
     txts_processados = 0
     for raiz, dirs, arqs in os.walk(DIR_TEMP):
         for arq in arqs:
@@ -168,12 +189,19 @@ def processar_zip(zip, dir_destino):
                     dados['Data'] = data_solr
                     dados['ID'] = data_id + str(txts_processados)
                     escritor.writerow(dados)
+                    txts_processados += 1
+
     arq_csv.close()
-
     caminho_csv = os.path.join(dir_destino, nome_csv)
-    os.system("mv %s %s" % (caminho_csv_temp, caminho_csv))
+    if txts_processados > 0:
+        shutil.move(caminho_csv_temp, caminho_csv)
+        if txts_processados < 40:
+            print("Apenas %s TXTs foram processados neste ZIP. Estranho..." %
+                  txts_processados)
+    else:
+        print("Nenhum TXT foi processado!")
 
-    os.system("rm -rf %s" % DIR_TEMP)
+    shutil.rmtree(DIR_TEMP)
 
 def ler_txt_hostil(caminho_txt):
     codificacoes = [
@@ -206,14 +234,7 @@ def extrair_dados_txt(caminho_txt):
 
 if __name__ == '__main__':
     if len(sys.argv) < 3:
-        print("""USO:
-              script.py <dir_destino> <itens_origem>+
-
-              dir_destino: diretório onde firam os CSVs gerados.
-              itens_origem: zips "brutos", ou diretórios com zips. Os dois
-              últimos caracteres do nome das pastas contendo os zips devem ser 
-              o número do ano dos zips contidos nela.
-              """)
+        print(MSG_AJUDA)
     else:
         dir_destino = sys.argv[1]
         itens_origem = sys.argv[2:]
