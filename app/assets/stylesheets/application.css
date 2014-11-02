@@ -177,3 +177,7 @@ a.link-documento dl:hover {
 #aviso-questionario a {
 	color: white;
 }
+
+body {
+	margin-bottom: 200px;
+}
