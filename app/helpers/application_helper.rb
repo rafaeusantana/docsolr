@@ -61,6 +61,7 @@ module ApplicationHelper
       'Larissa Y. Oyadomari',
       'Gisele S. Craveiro',
       'Jorge Machado',
+      'Nahema Nascimento Barra de Oliveira',
       'Emerson Marques Pedro',
       'Fabiano Angélico',
       'Gabriel Ponzetto',
