@@ -51,7 +51,7 @@ module ApplicationHelper
   end
 
   def linkQuestionario
-    'https://devcolab.each.usp.br/limesurvey/index.php/532824/lang-pt-BR'.html_safe
+    'http://devcolab.each.usp.br/limesurvey/index.php/191978'.html_safe
   end
 
   def gerarCreditosMK
