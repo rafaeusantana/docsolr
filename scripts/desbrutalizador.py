@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-#-----------------------------------------------------------------------------
+# ----------------------------------------------------------------------------
 # Copyright 2014 Andrés Mantecon Ribeiro Martano & Rafael Santana
 #
 # This program is free software: you can redistribute it and/or modify
@@ -16,16 +16,18 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>
-#-----------------------------------------------------------------------------
+# ----------------------------------------------------------------------------
 
-import os, sys, shutil
+
+import os
+import sys
+import shutil
 import csv
 import errno
 import subprocess
 import retrancas
 from datetime import timedelta, date
 
-#from contador import Contador
 
 MSG_AJUDA = """
 Processa os TXTs (com os textos dos artigos dos Diários Oficiais) dentro dos
@@ -34,7 +36,7 @@ ZIPs disponibilizados pela prefeitura convertendo-os em CSVs.
 USO:
 script.py <dir_destino> <itens_origem>+
 
-dir_destino: diretório onde firam os CSVs gerados.
+dir_destino: diretório onde irão os CSVs gerados.
 itens_origem: zips "brutos", ou diretórios com zips. Os dois últimos caracteres
 do nome das pastas contendo os zips devem ser o número do ano dos zips contidos
 nela.
@@ -42,17 +44,24 @@ nela.
 
 UM_DIA = timedelta(days=1)
 csv.field_size_limit(100000000)
-ORDEM = ("ID","Data","Retranca","Tipo do Conteúdo","Secretaria","Orgão","Texto")
+ORDEM = ("ID",
+         "Data",
+         "Retranca",
+         "Tipo do Conteúdo",
+         "Secretaria",
+         "Orgão",
+         "Texto")
 
-#-----------------------------------------------------------------------------
+# ----------------------------------------------------------------------------
 # CUIDADO! ESSE DIRETÓRIO SERÁ REMOVIDO! (várias vezes...)
 DIR_TEMP = os.path.join("/", "tmp", "diarios_temp")
-#-----------------------------------------------------------------------------
+# ----------------------------------------------------------------------------
 
 
 def verifica_zip(arq):
     """Retorna True se o arquivo parece ser um ZIP, False caso contrário"""
     return arq.lower()[-4:] == ".zip"
+
 
 def listar_zips_na_origem(itens_origem):
     zips = []
@@ -68,6 +77,7 @@ def listar_zips_na_origem(itens_origem):
         else:
             zips.append(item)
     return zips
+
 
 def obter_data_zip(zip):
     # Obtém ano a partir do nome da pasta do ZIP
@@ -90,8 +100,10 @@ def obter_data_zip(zip):
     # Adiciona um dia, pois os ZIPs são guardados no dia anterior à publicação
     return date(ano, mes, dia) + UM_DIA
 
+
 def converter_nome_zip_csv(zip):
     return obter_data_zip(zip).strftime('%Y-%m-%d') + ".csv"
+
 
 def excluir_zips_processados(zips, dir_destino):
     zips_faltantes = []
@@ -102,6 +114,7 @@ def excluir_zips_processados(zips, dir_destino):
             zips_faltantes.append(zip)
     return zips_faltantes
 
+
 def criar_dir_temp():
     try:
         os.makedirs(DIR_TEMP)
@@ -110,23 +123,28 @@ def criar_dir_temp():
             print("Erro ao tentar criar diretório temporário!")
             exit()
 
+
 def processar_zips(zips, dir_destino):
     for zip in zips:
         processar_zip(zip, dir_destino)
 
+
 def descompactar_zip(zip):
     os.system("unzip -nqq %s -d %s" % (zip, DIR_TEMP))
 
+
 def verifica_txt(arq):
-    s = ['file','-bi', arq]
-    tipo = str(subprocess.check_output(s),'utf8').partition(';')[0]
+    s = ['file', '-bi', arq]
+    tipo = str(subprocess.check_output(s), 'utf8').partition(';')[0]
     return tipo == 'text/plain'
+
 
 def limpa_nome_txt(nome):
     if nome[2] == '.':
         nome = nome.partition('.')[2]
     # Tira espaços do nome do arquivo
     return nome.replace(' ', '')
+
 
 def decodificar_nome_txt(nome):
     retranca = nome[0:7].lower()
@@ -157,6 +175,7 @@ def decodificar_nome_txt(nome):
         'Orgão': orgao,
         'Retranca': retranca,
     }
+
 
 def processar_zip(zip, dir_destino):
     print("Processando:", zip)
@@ -203,6 +222,7 @@ def processar_zip(zip, dir_destino):
 
     shutil.rmtree(DIR_TEMP)
 
+
 def ler_txt_hostil(caminho_txt):
     codificacoes = [
         'utf-8',
@@ -221,10 +241,11 @@ def ler_txt_hostil(caminho_txt):
     print('Erro ao Decodificar TXT!', caminho_txt)
     return None
 
+
 def extrair_dados_txt(caminho_txt):
     nome_limpo = limpa_nome_txt(os.path.basename(caminho_txt))
     if ('ALHAU.' not in nome_limpo) and \
-    ('logfechamento' not in nome_limpo.lower()):
+       ('logfechamento' not in nome_limpo.lower()):
         texto = ler_txt_hostil(caminho_txt)
         if texto:
             dados = decodificar_nome_txt(nome_limpo)
