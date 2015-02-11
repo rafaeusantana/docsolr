@@ -130,7 +130,8 @@ def processar_zips(zips, dir_destino):
 
 
 def descompactar_zip(zip):
-    os.system("unzip -nqq %s -d %s" % (zip, DIR_TEMP))
+    # os.system("unzip -nqq %s -d %s" % (zip, DIR_TEMP))
+    os.system('7z x -o%s %s | grep -v "^Extracting  "' % (DIR_TEMP, zip))
 
 
 def verifica_txt(arq):
