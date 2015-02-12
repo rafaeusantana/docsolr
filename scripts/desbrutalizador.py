@@ -262,4 +262,8 @@ if __name__ == '__main__':
         itens_origem = sys.argv[2:]
         zips = listar_zips_na_origem(itens_origem)
         zips_faltantes = excluir_zips_processados(zips, dir_destino)
-        processar_zips(zips_faltantes, dir_destino)
+        if zips_faltantes:
+            processar_zips(zips_faltantes, dir_destino)
+        else:
+            print("Nenhum zip novo para ser processado...")
+            exit(4)
