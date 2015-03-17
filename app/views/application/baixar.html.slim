@@ -22,16 +22,15 @@ p
   | .
 
 
-h2 Formatos da base
-
-p
-  | A base está disponibilizada em dois formatos: "bruto" e CSV. O primeiro contém todos os arquivos disponibilizados pela prefeitura, sem alteração nenhuma. Esses arquivvos foram então descompactados de seus ZIPs; inferidas as datas de publicação a partir dos nomes dos ZIPs; separados os TXTs dos DOCs, PDFs etc; inferidas e padronizadas as codificações dos TXTs; inferidos os metadados a partir das retrancas; agrupados os TXTs e seus metadados em um CSV por dia de publicação; que foram finalmente compactados em um 7z.
-p 
-  | Resumindo: as bases em CSV não contêm todos os arquivos (contém apenas os TXTs que conseguiram ser processados), porém devem ser muito mais fáceis de serem utilizadas do que as bases "brutas". Caso você queira utilizar todos os arquivos (como os DOCs e PDFs) ou os TXTs iniciais, terá que baixar e desbravar a base em formato "bruto". Boa sorte. ;) (Aqui estão os
-  a<> href="https://github.com/rafaeusantana/docsolr/tree/master/scripts" scripts que fizemos para o tratamento da base
-  | [Python], talvez ajudem.)
-
 markdown:
+  ## Formatos da base
+
+  A base está disponibilizada em dois formatos: *bruto* e CSV. O primeiro contém todos os arquivos disponibilizados pela prefeitura, sem alteração nenhuma. Esses arquivos foram então descompactados de seus ZIPs; inferidas as datas de publicação a partir dos nomes dos ZIPs; separados os TXTs dos DOCs, PDFs etc; inferidas e padronizadas as codificações dos TXTs; inferidos os metadados a partir das retrancas; agrupados os TXTs e seus metadados em um CSV por dia de publicação; que foram finalmente compactados em um 7z.
+
+  Resumindo: as bases em CSV não contêm todos os arquivos (contém apenas os TXTs que conseguiram ser processados), porém devem ser muito mais fáceis de serem utilizadas do que as bases *brutas*. Caso você queira utilizar todos os arquivos (como os DOCs e PDFs) ou os TXTs iniciais, terá que baixar e desbravar a base em formato *bruto*. Boa sorte. ;)
+
+  Aqui estão os [scripts que fizemos para o tratamento da base](https://github.com/rafaeusantana/docsolr/tree/master/scripts) [[Python]](https://pt.wikipedia.org/wiki/Python), talvez ajudem.
+
   ##Licença
 
   As bases estão sob licença [Creative Commons por Atribuição 4.0](//creativecommons.org/licenses/by/4.0/).

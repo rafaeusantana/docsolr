@@ -1,7 +1,10 @@
 <div class="search-export-formats">
   Exportar Página:
-  <%= botaoExportador("JSON",search_url_format("json")) %>
-  <%= botaoExportador("XML",search_url_format("xml")) %>
-  <%= botaoExportador("Atom",search_url_format("atom")) %>
-  <%= botaoExportador("RSS",search_url_format("rss")) %>
+  <div class="btn-group" role="group">
+    <%= botaoExportador("JSON",search_url_format("json")) %>
+    <%= botaoExportador("XML",search_url_format("xml")) %>
+    <%= botaoExportador("Atom",search_url_format("atom")) %>
+    <%= botaoExportador("RSS",search_url_format("rss")) %>
+    <a class="btn btn-primary btn-sm" href="http://devcolab.each.usp.br/do/exportadores">?</a>
+  </div>
 </div>

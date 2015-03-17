@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
-  get 'sobre' => 'application#sobre'
+  # get 'sobre' => 'application#sobre'
   get 'baixar' => 'application#baixar'
   get 'creditos' => 'application#creditos'
   get 'privacidade' => 'application#privacidade'
   get 'buscaavancada' => 'application#buscaavancada'
+  get 'exportadores' => 'application#exportadores'
+  get 'duvidas' => 'application#duvidas'
 
   root :to => "catalog#index"
   blacklight_for :catalog
