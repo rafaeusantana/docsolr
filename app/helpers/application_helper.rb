@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 module ApplicationHelper
 
   # Retorna data no formato dd/mm/yyyy
@@ -75,6 +76,8 @@ module ApplicationHelper
       'Paulo Roberto Dutra',
       'Danilo Marasca Bertazzi',
       'Domingas Soares de Oliveira',
+      'Paulo de Negreiros Spinelli',
+      'Alexandre Calil',
     ].sort! .collect { |x| "<li>%s</li>" % x } .join "\n"
   end
 
