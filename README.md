@@ -1,5 +1,10 @@
-README
-======
+Diário Livre
+============
+
+Sistema de busca do Diário Oficial Municipal de São Paulo.
+Atualmente rodando aqui: http://devcolab.each.usp.br/do/
+
+## Instalação
 
 Para deixar esta aplicação funcionando, siga os seguintes passos:
 
