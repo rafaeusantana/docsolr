@@ -1,2 +1,3 @@
 User-agent: *
 Disallow: /do/catalog*
+Disallow: /do/2007/04/04/266
