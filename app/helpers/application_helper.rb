@@ -78,6 +78,7 @@ module ApplicationHelper
       'Domingas Soares de Oliveira',
       'Paulo de Negreiros Spinelli',
       'Alexandre Calil',
+      'Thiago Fernando dos Santos Teixeira',
     ].sort! .collect { |x| "<li>%s</li>" % x } .join "\n"
   end
 
